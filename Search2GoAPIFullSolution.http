@@ -1,0 +1,6 @@
+@Search2GoAPIFullSolution_HostAddress = http://localhost:5076
+
+GET {{Search2GoAPIFullSolution_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
