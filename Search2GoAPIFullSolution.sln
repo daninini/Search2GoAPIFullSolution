@@ -5,6 +5,12 @@ VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search2GoAPIFullSolution", "Search2GoAPIFullSolution.csproj", "{C09ABD24-5848-4C31-87DA-8A3024F3CC26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search2Go.Domain", "..\Search2Go.Domain\Search2Go.Domain.csproj", "{D5BE65C3-C01E-4507-9279-01C9534563D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search2Go.Application", "..\Search2Go.Application\Search2Go.Application.csproj", "{1D70292A-9E3D-48BB-B4AF-CC80476825DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search2Go.Infrastructure", "..\Search2Go.Infrastructure\Search2Go.Infrastructure.csproj", "{620C4D14-2C4C-4575-855A-8E08C5F2CF63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{C09ABD24-5848-4C31-87DA-8A3024F3CC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09ABD24-5848-4C31-87DA-8A3024F3CC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C09ABD24-5848-4C31-87DA-8A3024F3CC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5BE65C3-C01E-4507-9279-01C9534563D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5BE65C3-C01E-4507-9279-01C9534563D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5BE65C3-C01E-4507-9279-01C9534563D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5BE65C3-C01E-4507-9279-01C9534563D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D70292A-9E3D-48BB-B4AF-CC80476825DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D70292A-9E3D-48BB-B4AF-CC80476825DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D70292A-9E3D-48BB-B4AF-CC80476825DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D70292A-9E3D-48BB-B4AF-CC80476825DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620C4D14-2C4C-4575-855A-8E08C5F2CF63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620C4D14-2C4C-4575-855A-8E08C5F2CF63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620C4D14-2C4C-4575-855A-8E08C5F2CF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620C4D14-2C4C-4575-855A-8E08C5F2CF63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
