@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Search2Go.Application.DTOs;
+using Search2Go.Application.DTOs.Auth;
 using Search2Go.Application.Interfaces;
 
 namespace Search2GoAPIFullSolution.Controllers

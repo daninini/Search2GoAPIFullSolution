@@ -44,7 +44,12 @@ namespace Search2GoAPIFullSolution
             builder.Services.AddScoped<ICompanyService, CompanyService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<JwtTokenGenerator>();
-
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("ManagerOnly", policy => policy.RequireRole("Manager"));
+                // etc.
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
