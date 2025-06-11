@@ -17,11 +17,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Search2Go.Application\Search2Go.Application.csproj" />
+    <ProjectReference Include="..\Search2Go.Domain\Search2Go.Domain.csproj" />
     <ProjectReference Include="..\Search2Go.Infrastructure\Search2Go.Infrastructure.csproj" />
+
   </ItemGroup>
 
 </Project>

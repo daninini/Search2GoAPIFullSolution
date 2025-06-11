@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Search2Go.Application.DTOs.Auth;
 using Search2Go.Application.Interfaces;
+using Search2Go.Infrastructure.Services;
 
 namespace Search2GoAPIFullSolution.Controllers
 {
@@ -41,6 +43,18 @@ namespace Search2GoAPIFullSolution.Controllers
             {
                 return Unauthorized(new { error = ex.Message });
             }
+        }
+        [HttpPost("generic-forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromForm] ForgotPasswordRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Email))
+                return BadRequest("Email is required.");
+
+            var result = await _auth.SendPasswordResetAsync(request.Email);
+            if (!result) return NotFound("User with this email not found.");
+
+            return Ok(new { message = "Password reset link sent." });
         }
     }
 }

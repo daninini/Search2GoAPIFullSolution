@@ -1,44 +1,53 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// BookingController.cs (API Layer)
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Search2Go.Application.DTOs.Booking;
+using Search2Go.Application.DTOs.Bookings;
 using Search2Go.Application.Interfaces;
+using System.Security.Claims;
 
-namespace Search2GoAPIFullSolution.Controllers
+namespace Search2GoAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/bookings")]
+    [Authorize(Roles = "Enduser,Company,Admin")]
     public class BookingController : ControllerBase
     {
-        private readonly IBookingService _service;
+        private readonly IBookingService _bookingService;
 
-        public BookingController(IBookingService service)
+        public BookingController(IBookingService bookingService)
         {
-            _service = service;
+            _bookingService = bookingService;
         }
 
-        [HttpPost]
-        [Authorize(Roles = "EndUser")]
-        public async Task<IActionResult> Create(CreateBookingRequest request)
+        private Guid GetUserId() => Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+        [HttpPost("create")]
+        public async Task<ActionResult<BookingResponse>> Create([FromBody] CreateBookingRequest request)
         {
-            var id = await _service.CreateAsync(request);
-            return CreatedAtAction(nameof(GetByUser), new { userId = request.UserId }, id);
+            var userId = GetUserId();
+            var result = await _bookingService.CreateBookingAsync(userId, request);
+            return Ok(result);
         }
 
-        [HttpGet("user/{userId}")]
-        [Authorize(Roles = "EndUser")]
-        public async Task<IActionResult> GetByUser(Guid userId)
+        [HttpGet("my-bookings")]
+        public async Task<ActionResult<List<BookingResponse>>> GetUserBookings()
         {
-            var bookings = await _service.GetByUserAsync(userId);
-            return Ok(bookings);
+            var userId = GetUserId();
+            return Ok(await _bookingService.GetBookingsByUserIdAsync(userId));
         }
 
-        [HttpPost("cancel/{id}")]
-        [Authorize(Roles = "EndUser")]
-        public async Task<IActionResult> Cancel(Guid id)
+        [HttpGet("company/{companyId}")]
+        public async Task<ActionResult<List<BookingResponse>>> GetCompanyBookings(Guid companyId)
         {
-            var result = await _service.CancelAsync(id);
-            if (!result) return NotFound();
-            return Ok("Cancelled");
+            return Ok(await _bookingService.GetCompanyBookingsAsync(companyId));
+        }
+
+        [HttpPost("cancel/{bookingId}")]
+        public async Task<IActionResult> Cancel(Guid bookingId)
+        {
+            await _bookingService.CancelBookingAsync(bookingId);
+            return NoContent();
         }
     }
 }
